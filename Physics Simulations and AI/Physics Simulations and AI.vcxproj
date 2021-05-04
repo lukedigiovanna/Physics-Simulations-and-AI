@@ -146,9 +146,11 @@
   <ItemGroup>
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
