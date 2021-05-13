@@ -145,11 +145,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="draw.cpp" />
+    <ClCompile Include="linreg.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw.h" />
+    <ClInclude Include="linreg.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="vec2.h" />
   </ItemGroup>

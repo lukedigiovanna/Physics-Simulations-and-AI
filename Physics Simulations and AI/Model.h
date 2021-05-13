@@ -4,16 +4,18 @@
 class Model
 {
 private:
-	float xWeights[3];
-	float yWeights[3];
+	// weights: b0, w0
+	float xWeights[2];
+	float yWeights[2];
 public:
 	Model() {
-		for (int i = 0; i < 3; i++) { xWeights[i] = 0; yWeights[i] = 0; }
+		for (int i = 0; i < 2; i++) { xWeights[i] = 0; yWeights[i] = 0; }
+		yWeights[1] = -9.81f;
 	};
 
 	void train(float** data, unsigned int iterations); // will train this model on the iterations
 
-	vec2 next(float xv, float yv, float dt); // calculates the next velocity from the given inputs
+	vec2 next(float dt); // calculates the next velocity from the given inputs
 
 	float cost(float evaluationData[][3], unsigned int n);
 };

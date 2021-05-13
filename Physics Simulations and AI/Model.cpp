@@ -1,23 +1,22 @@
 #include "Model.h"
 
-vec2 Model::next(float xv, float yv, float dt)
+vec2 Model::next(float dt)
 {
 	vec2 accum;
-	for (int i = 1; i < 3; i++) {
-		accum += vec2(xWeights[i], yWeights[i]);
-	}
-	return accum * dt + vec2(xWeights[0], yWeights[0]);
+	accum += vec2(xWeights[0], yWeights[0]);
+	accum += vec2(xWeights[1], yWeights[1]) * dt;
+	return accum;
 }
 
 float Model::cost(float evaluationData[][3], unsigned int n) 
 {
 	float cost = 0.0f;
-	vec2 vel(evaluationData[0][1], evaluationData[0][2]);
-	for (int i = 0; i < n - 1; i++) {
-		vec2 nextVelocity = next(vel.x, vel.y, evaluationData[i][0]);
-		float dx = nextVelocity.x - evaluationData[i + 1][1];
-		float dy = nextVelocity.y - evaluationData[i + 1][2];
-		cost += dx * dx + dy * dy;
+	vec2 expected(evaluationData[0][1], evaluationData[0][2]);
+	for (int i = 0; i < n; i++) {
+		vec2 predicted = next(evaluationData[i][0]);
+		float dx = expected.x - predicted.x;
+		float dy = expected.y - predicted.y;
+		cost += (expected - predicted).squaredMagnitude();
 	}
-	return cost / (n - 1);
+	return cost / n;
 }
